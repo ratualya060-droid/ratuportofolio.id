@@ -1,0 +1,962 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a14 25%, #2d1b2e 50%, #1a0a14 75%, #0a0a0a 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 20, 147, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(199, 21, 133, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: glowPulse 8s ease-in-out infinite;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, rgba(255, 20, 147, 0.03) 0px, transparent 1px, transparent 2px, rgba(255, 20, 147, 0.03) 3px),
+        repeating-linear-gradient(90deg, rgba(255, 20, 147, 0.03) 0px, transparent 1px, transparent 2px, rgba(255, 20, 147, 0.03) 3px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    font-weight: 400;
+}
+
+/* Header dengan Glassmorphism Elegan */
+header {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 20, 147, 0.3);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(255, 20, 147, 0.2), 0 0 100px rgba(255, 20, 147, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled {
+    padding: 15px;
+    background: rgba(10, 10, 10, 0.85);
+    box-shadow: 0 8px 32px rgba(255, 20, 147, 0.3), 0 0 120px rgba(255, 20, 147, 0.15);
+}
+
+header h1 {
+    font-size: 2.8em;
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #c71585 50%, #ff1493 75%, #ff69b4 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientText 5s ease infinite, glow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.5));
+    letter-spacing: 2px;
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.5)) brightness(1); 
+    }
+    50% { 
+        filter: drop-shadow(0 0 40px rgba(255, 20, 147, 0.8)) brightness(1.2); 
+    }
+}
+
+nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: rgba(255, 20, 147, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 20, 147, 0.2);
+    overflow: hidden;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff1493, transparent);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #ff1493;
+}
+
+nav a:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+nav a:hover {
+    background: rgba(255, 20, 147, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+    color: #fff;
+    border-color: rgba(255, 20, 147, 0.5);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a.active {
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.4), rgba(199, 21, 133, 0.4));
+    color: #fff;
+    box-shadow: 0 5px 25px rgba(255, 20, 147, 0.5), inset 0 0 20px rgba(255, 20, 147, 0.2);
+    border-color: rgba(255, 20, 147, 0.6);
+}
+
+section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Hero Section dengan Glass Effect Premium */
+.hero {
+    text-align: center;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    padding: 80px 30px;
+    border-radius: 35px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 
+        0 8px 32px rgba(255, 20, 147, 0.3),
+        0 0 100px rgba(255, 20, 147, 0.2),
+        inset 0 0 100px rgba(255, 20, 147, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 20, 147, 0.1) 50%,
+        transparent 70%
+    );
+    animation: heroShine 4s linear infinite;
+}
+
+@keyframes heroShine {
+    0% { transform: translate(-100%, -100%) rotate(45deg); }
+    100% { transform: translate(100%, 100%) rotate(45deg); }
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 20, 147, 0.1), transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.hero img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 20, 147, 0.5);
+    margin-bottom: 30px;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 
+        0 10px 50px rgba(255, 20, 147, 0.4),
+        0 0 100px rgba(255, 20, 147, 0.3),
+        inset 0 0 30px rgba(255, 20, 147, 0.2);
+    position: relative;
+    z-index: 2;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.hero img:hover {
+    transform: scale(1.15) rotate(8deg);
+    box-shadow: 
+        0 15px 70px rgba(255, 20, 147, 0.6),
+        0 0 150px rgba(255, 20, 147, 0.5),
+        inset 0 0 40px rgba(255, 20, 147, 0.3);
+    border-color: #ff1493;
+    filter: brightness(1.2) contrast(1.2);
+}
+
+.hero h2 {
+    font-size: 3em;
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #c71585 50%, #ff1493 75%, #ff69b4 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    animation: gradientText 5s ease infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.6));
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.95);
+    margin-top: 15px;
+    text-shadow: 0 2px 20px rgba(255, 20, 147, 0.5);
+    position: relative;
+    z-index: 2;
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* Card Sections dengan Glassmorphism Premium */
+.about, .skills, .education, .experience, .projects, .contact {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    border-radius: 30px;
+    margin-bottom: 40px;
+    padding: 40px;
+    box-shadow: 
+        0 8px 32px rgba(255, 20, 147, 0.2),
+        0 0 80px rgba(255, 20, 147, 0.1),
+        inset 0 0 80px rgba(255, 20, 147, 0.03);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before, .skills::before, .education::before, 
+.experience::before, .projects::before, .contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 20, 147, 0.1),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+.about:hover, .skills:hover, .education:hover, 
+.experience:hover, .projects:hover, .contact:hover {
+    transform: translateY(-15px) rotateX(2deg);
+    box-shadow: 
+        0 20px 60px rgba(255, 20, 147, 0.4),
+        0 0 120px rgba(255, 20, 147, 0.3),
+        inset 0 0 100px rgba(255, 20, 147, 0.05);
+    background: rgba(10, 10, 10, 0.7);
+    border-color: rgba(255, 20, 147, 0.5);
+}
+
+.about:hover::before, .skills:hover::before, .education:hover::before, 
+.experience:hover::before, .projects:hover::before, .contact:hover::before {
+    left: 100%;
+}
+
+.about h2, .skills h2, .education h2, 
+.experience h2, .projects h2, .contact h2 {
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #c71585 50%, #ff1493 75%, #ff69b4 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 25px;
+    font-size: 2.3em;
+    animation: gradientText 5s ease infinite;
+    filter: drop-shadow(0 0 25px rgba(255, 20, 147, 0.5));
+    letter-spacing: 1.5px;
+}
+
+.about p, .education p, .experience p {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+/* Skills dengan animasi premium */
+.skills ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skills li {
+    margin-bottom: 25px;
+    font-size: 1.15em;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.skills .skill-bar {
+    background: rgba(255, 20, 147, 0.1);
+    border-radius: 20px;
+    height: 28px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 20, 147, 0.2);
+    border: 1px solid rgba(255, 20, 147, 0.2);
+}
+
+.skills .skill-fill {
+    background: linear-gradient(90deg, 
+        #ff1493 0%, 
+        #ff69b4 25%, 
+        #c71585 50%, 
+        #ff69b4 75%, 
+        #ff1493 100%);
+    background-size: 200% 100%;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 0 !important;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 0 30px rgba(255, 20, 147, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: skillGradient 3s ease infinite;
+}
+
+@keyframes skillGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.skills .skill-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: skillShine 2.5s infinite;
+}
+
+@keyframes skillShine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+.skills .skill-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+}
+
+.skills .skill-fill.animate {
+    width: var(--skill-width) !important;
+}
+
+/* Education & Experience Items Premium */
+.education .edu-item, .experience .exp-item {
+    margin-bottom: 25px;
+    padding: 25px;
+    background: rgba(255, 20, 147, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 20, 147, 0.25);
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.education .edu-item::before, .experience .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, #ff1493, #c71585);
+    transition: height 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
+}
+
+.education .edu-item:hover, .experience .exp-item:hover {
+    background: rgba(255, 20, 147, 0.15);
+    transform: translateX(20px) scale(1.02);
+    box-shadow: 
+        0 10px 40px rgba(255, 20, 147, 0.4),
+        inset 0 0 30px rgba(255, 20, 147, 0.1);
+    border-color: rgba(255, 20, 147, 0.5);
+}
+
+.education .edu-item:hover::before, .experience .exp-item:hover::before {
+    height: 100%;
+}
+
+.education h3, .experience h3 {
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    font-size: 1.5em;
+    filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.4));
+    letter-spacing: 0.5px;
+}
+
+.education p, .experience p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Projects dengan Card Effect Premium */
+.projects .project {
+    margin-bottom: 30px;
+    padding: 30px;
+    background: rgba(255, 20, 147, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 20, 147, 0.25);
+    border-radius: 25px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects .project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 20, 147, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.projects .project::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.projects .project:hover::before {
+    left: 100%;
+}
+
+.projects .project:hover::after {
+    width: 500px;
+    height: 500px;
+}
+
+.projects .project:hover {
+    background: rgba(255, 20, 147, 0.15);
+    transform: scale(1.05) translateY(-8px) rotateX(3deg);
+    box-shadow: 
+        0 15px 60px rgba(255, 20, 147, 0.5),
+        0 0 100px rgba(255, 20, 147, 0.3),
+        inset 0 0 50px rgba(255, 20, 147, 0.1);
+    border-color: rgba(255, 20, 147, 0.6);
+}
+
+.projects .project h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 20px rgba(255, 20, 147, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.projects .project p {
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Contact Form Premium */
+.contact form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact input, .contact textarea {
+    margin-bottom: 20px;
+    padding: 18px;
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 20, 147, 0.08);
+    backdrop-filter: blur(15px);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1em;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact input::placeholder, .contact textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.3px;
+}
+
+.contact input:focus, .contact textarea:focus {
+    outline: none;
+    border-color: #ff1493;
+    box-shadow: 
+        0 0 30px rgba(255, 20, 147, 0.5),
+        inset 0 2px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+    background: rgba(255, 20, 147, 0.12);
+}
+
+.contact button {
+    background: linear-gradient(135deg, #ff1493 0%, #c71585 100%);
+    color: #fff;
+    border: none;
+    padding: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 700;
+    font-size: 1.2em;
+    box-shadow: 
+        0 5px 25px rgba(255, 20, 147, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contact button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.contact button:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.contact button:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 
+        0 10px 40px rgba(255, 20, 147, 0.6),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.contact button:active {
+    transform: scale(0.98);
+}
+
+/* Footer Premium */
+footer {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-top: 1px solid rgba(255, 20, 147, 0.3);
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+    box-shadow: 
+        0 -8px 32px rgba(255, 20, 147, 0.2),
+        0 0 100px rgba(255, 20, 147, 0.1);
+}
+
+footer p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(255, 20, 147, 0.5);
+    letter-spacing: 0.5px;
+}
+
+footer .social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+footer .social-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: rgba(255, 20, 147, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+footer .social-links a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 20, 147, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+footer .social-links a:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+footer .social-links a:hover {
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(199, 21, 133, 0.3));
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
+    border-color: rgba(255, 20, 147, 0.6);
+}
+
+/* Tombol scroll to top premium */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #ff1493 0%, #c71585 100%);
+    color: white;
+    border: 1px solid rgba(255, 20, 147, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    box-shadow: 
+        0 5px 25px rgba(255, 20, 147, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-12px); 
+    }
+}
+
+#scrollTopBtn:hover {
+    background: linear-gradient(135deg, #c71585 0%, #ff1493 100%);
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 
+        0 10px 40px rgba(255, 20, 147, 0.7),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+#scrollTopBtn:active {
+    transform: scale(1.1);
+}
+
+/* Tombol WhatsApp Mengambang Premium */
+#whatsappBtn {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 5px 30px rgba(37, 211, 102, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(37, 211, 102, 0.5);
+}
+
+#whatsappBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    animation: waPulse 2s infinite, waFloat 3s ease-in-out infinite;
+}
+
+#whatsappBtn:hover {
+    transform: scale(1.2) rotate(15deg);
+    box-shadow: 
+        0 10px 50px rgba(37, 211, 102, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 100px rgba(37, 211, 102, 0.5);
+}
+
+#whatsappBtn:active {
+    transform: scale(1.1);
+}
+
+@keyframes waPulse {
+    0%, 100% {
+        box-shadow: 
+            0 5px 30px rgba(37, 211, 102, 0.6),
+            inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 5px 45px rgba(37, 211, 102, 0.9),
+            inset 0 0 25px rgba(255, 255, 255, 0.3),
+            0 0 80px rgba(37, 211, 102, 0.6);
+    }
+}
+
+@keyframes waFloat {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-12px); 
+    }
+}
+
+.form-message {
+    padding: 18px;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: none;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+}
+
+.form-message.success {
+    background: rgba(37, 211, 102, 0.2);
+    color: #fff;
+    border-color: rgba(37, 211, 102, 0.5);
+}
+
+.form-message.error {
+    background: rgba(220, 53, 69, 0.2);
+    color: #fff;
+    border-color: rgba(220, 53, 69, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    nav a {
+        margin: 5px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    
+    .hero {
+        padding: 50px 20px;
+    }
+    
+    .hero img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hero h2 {
+        font-size: 2em;
+    }
+    
+    .hero p {
+        font-size: 1em;
+    }
+    
+    section {
+        padding: 30px 15px;
+    }
+    
+    .about, .skills, .education, .experience, .projects, .contact {
+        padding: 25px;
+    }
+    
+    #scrollTopBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    #whatsappBtn {
+        width: 55px;
+        height: 55px;
+        bottom: 80px;
+        right: 20px;
+    }
+}
